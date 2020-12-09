@@ -74,10 +74,10 @@ func (this *giteeClient) ListOrg() ([]string, error) {
 	var r []string
 
 	p := int32(1)
-	opt := gitee.GetV5UserOrgsOpts{Admin: optional.NewBool(true)}
+	opt := gitee.GetV5UserEnterprisesOpts{Admin: optional.NewBool(true)}
 	for {
 		opt.Page = optional.NewInt32(p)
-		ls, _, err := this.c.OrganizationsApi.GetV5UserOrgs(context.Background(), &opt)
+		ls, _, err := this.c.EnterprisesApi.GetV5UserEnterprises(context.Background(), &opt)
 		if err != nil {
 			return nil, err
 		}
@@ -89,7 +89,7 @@ func (this *giteeClient) ListOrg() ([]string, error) {
 		p += 1
 
 		for _, v := range ls {
-			r = append(r, v.Login)
+			r = append(r, v.Path)
 		}
 	}
 
