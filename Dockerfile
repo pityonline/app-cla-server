@@ -15,7 +15,7 @@ RUN if [ "$GOPROXY" != "" ]; then pip config set global.index-url https://pypi.t
 RUN pip install PyPDF2
 WORKDIR /opt/app/
 COPY ./conf ./conf
-COPY ./util/merge-signature.py ./util
+COPY ./util/merge-signature.py ./util/merge-signature.py
 # overwrite config yaml
 COPY ./deploy/app.conf ./conf
 COPY  --from=BUILDER /go/src/github.com/opensourceways/app-cla-server/cla-server .
